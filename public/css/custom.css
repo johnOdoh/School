@@ -1,0 +1,28 @@
+/** ADD YOUR AWESOME CODES HERE **/
+
+
+/* table td {
+    padding: 10px;
+    vertical-align: top;
+}
+
+table tr,
+th {
+    border: 2px solid black;
+} */
+
+.cont {
+    height: 50px;
+    background: #4c5a7d;
+    margin: 10px 5%;
+    width: 90%;
+    text-align: center;
+    color: white;
+    transition: all 500ms ease-in-out;
+    padding-top: 12px;
+}
+
+.cont:hover {
+    background: #424e6d;
+    color: #eea412;
+}

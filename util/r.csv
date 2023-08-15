@@ -1,0 +1,7 @@
+name,divisions
+JS1,[{"name":"A"},{"name":"B"}]
+JS2,[{"name":"A"},{"name":"B"}]
+JS3,[{"name":"A"},{"name":"B"}]
+SS1,[{"name":"A"},{"name":"B"}]
+SS2,[{"name":"Sci A"},{"name":"Sci B"},{"name":"Art A"},{"name":"Art B"}]
+SS3,[{"name":"Sci A"},{"name":"Sci B"},{"name":"Art A"},{"name":"Art B"}]

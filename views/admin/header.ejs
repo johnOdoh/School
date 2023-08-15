@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Portal</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="/portal/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="/portal/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <% if (path === 'ss' || path === 'ts') { %>
+        <link rel="stylesheet" href="/portal/css/data-table/bootstrap-table.css">
+        <style>
+             :placeholder-shown {
+                font-style: italic;
+            }
+        </style>
+        <% } if(path === 'pu') { %>
+            <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+            <% } %>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Binary admin</a>
+            </div>
+            <div style="padding: 15px 50px 5px 50px; float: left; font-size: 16px;" class="nav-links">
+                <a href="/">Home</a>
+                <a href="">Contact</a>
+                <a href="">Subject</a>
+            </div>
+            <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
+                <form action="/auth/logout" method="POST">
+                    13th November, 2020 &nbsp; <button class="btn btn-warning">Logout</button>
+                </form>
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="text-center">
+                        <img src="<%= user.image %>" class="user-image img-responsive" style="width: 128px; height: 128px; border-radius: 50%;">
+                        <h3 style="color: white; margin-bottom: 30px;">
+                            <%= user.firstName %>
+                                <%= user.lastName %>
+                        </h3>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'dashboard' ? 'active-menu' : '' %>" href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'profile' ? 'active-menu' : '' %>" href="/admin/profile"><i class="fa fa-desktop"></i> Profile</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'ct' ? 'active-menu' : '' %>" href="/admin/createTeacher"><i class="fa fa-qrcode"></i> Create Teacher</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'csu' ? 'active-menu' : '' %>" href="/admin/createSubject"><i class="fa fa-bar-chart-o"></i> Create Subject</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'candidates' ? 'active-menu' : '' %>" href="/admin/candidates"><i class="fa fa-table"></i> All Candidates</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'ca' ? 'active-menu' : '' %>" href="/admin/createAdmin"><i class="fa fa-edit"></i> Create Admin</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'as' ? 'active-menu' : '' %>" href="/admin/assignRole"><i class="fa fa-edit"></i> Assign Teacher Role</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'cterm' ? 'active-menu' : '' %>" href="/admin/changeTerm"><i class="fa fa-edit"></i> Change Term</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'ss' ? 'active-menu' : '' %>" href="/admin/searchStudent"><i class="fa fa-search"></i> Search Student</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'ts' ? 'active-menu' : '' %>" href="/admin/searchTeacher"><i class="fa fa-search"></i> Search Teacher</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'pu' ? 'active-menu' : '' %>" href="/admin/postUpload"><i class="fa fa-search"></i> Post Upload</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'ap' ? 'active-menu' : '' %>" href="/admin/allPosts"><i class="fa fa-eye"></i> All Posts</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-sitemap"></i> All Teachers<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="">JS1</a></li>
+                            <li><a href="">JS2</a></li>
+                            <li><a href="">JS3</a></li>
+                            <li><a href="">SS1</a></li>
+                            <li><a href="">SS2</a></li>
+                            <li><a href="">SS3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>

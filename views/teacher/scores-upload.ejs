@@ -1,0 +1,92 @@
+﻿<%- include('./header.ejs') %>
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Scores Upload</h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading ">
+                            <ul class="nav nav-pills">
+                                <% let count = 1; for (let division of divs) { %>
+                                    <li class="<%= count == 1 ? 'active' : '' %>">
+                                        <a href="#<%= division %>" data-toggle="tab">
+                                            <%= division %>
+                                        </a>
+                                    </li>
+                                    <% count++ } %>
+                            </ul>
+                        </div>
+                        <form action="/teacher/uploadScores/<%= subject %>/<%= theClass %>" method="POST">
+                            <div class="tab-content">
+                                <% let count1 = 1; for (let division of divs) { %>
+                                    <div class="tab-pane fade <%= count1 == 1 ? 'active in' : '' %>" id="<%= division %>">
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered table-hover" style="width: 100%;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S/N</th>
+                                                            <th>Student Name</th>
+                                                            <th>Reg No</th>
+                                                            <th>Score</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% let count2 = 1; for (let score of scores) { if (score.student.division == division) { %>
+                                                            <tr>
+                                                                <td>
+                                                                    <%= count2 %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= `${score.student.surName} ${score.student.firstName} ${score.student.middleName}` %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= score.student.regNo %>
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="number" name="scores[]" min="0" value="<%= score.score || 0 %>">
+                                                                    <input type="hidden" name="studentIds[]" value="<%= score.student._id %>">
+                                                                </td>
+                                                            </tr>
+                                                            <% count2++ } } %>
+                                                    </tbody>
+                                                </table>
+                                                <button class="btn btn-danger">Upload</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% count1++ } %>
+                            </div>
+                            <input type="hidden" name="index" value="<%= index.class %>">
+                            <input type="hidden" name="assIndex" value="<%= index.assessment %>">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="/portal/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/portal/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="/portal/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="/portal/js/custom.js"></script>
+
+
+    </body>
+
+    </html>

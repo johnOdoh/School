@@ -1,0 +1,75 @@
+<%- include('./includes/header.ejs') %>
+
+    <div id="overviews" class="section wb">
+        <div class="container">
+            <h1 class="text-center mb-4">
+                <%= `${subj} Info(${termInfo.name} Term)` %>
+            </h1>
+            <div class="customer-box mb-2">
+                <ul class="nav nav-tabs p-0" style="background: none;">
+                    <li>
+                        <a class="active" href="#scheme" data-toggle="tab">
+                        Scheme & Recommended Material(s)
+                    </a>
+                    </li>
+                    <li>
+                        <a class="" href="#teachers" data-toggle="tab">
+                        Teacher(s)
+                    </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content ml-3">
+                <div class="row tab-pane active" id="scheme">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>Week</th>
+                                            <th>Topic</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% let counter = 1; for(let scheme of subjectInfo.scheme[termInfo.index].content) { %>
+                                            <tr>
+                                                <td>Week
+                                                    <%= counter %>
+                                                </td>
+                                                <td>
+                                                    <%= scheme %>
+                                                </td>
+                                            </tr>
+                                            <% counter++ } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <h4 class="font-weight-bold">Recommended Material(s):</h4>
+                            <ul>
+                                <% for(let book of subjectInfo.recommendedBooks) { %>
+                                    <li>
+                                        <%= book.title %>, <i>by <%= book.author %></i></li>
+                                    <% } %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row tab-pane" id="teachers">
+                    <div class="row text-center">
+                        <% for(let teacher of subjectInfo.teachers) { %>
+                            <div class="col-lg-4 col-sm-6 col-12 p-3">
+                                <div class="image-blog">
+                                    <img src="<%= teacher.image %>" alt="" class="img-responsive">
+                                </div>
+                                <small><i><%= `${teacher.firstName} ${teacher.lastName} (${teacher.phoneNo})` %></i></small>
+                            </div>
+                            <% } %>
+                                <!-- end col -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('./includes/footer.ejs') %>

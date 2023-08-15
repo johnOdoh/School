@@ -1,0 +1,139 @@
+<%- include('./header.ejs') %>
+
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Student Search</h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+            <div class="row">
+                <div class="col-xs-12" style="margin-bottom: 20px;">
+                    <!-- <form action=""> -->
+                    <div class="row" id="form">
+                        <div class="form-group col-xs-5">
+                            <label><b>Keyword</b></label>
+                            <input class="form-control" placeholder="eg: John, Js1, 2012568" name="keyword">
+                        </div>
+                        <div class="form-group col-xs-7">
+                            <label><b>Focus</b></label>
+                            <div style="display: flex;">
+                                <select class="form-control" name="focus">
+                                    <option value="all">All</option>
+                                    <option value="surName">SurName</option>
+                                    <option value="firstName">First Name</option>
+                                    <option value="lastName">Last Name</option>
+                                    <option value="regNo">Reg No</option>
+                                    <option value="class">Class</option>
+                                </select>
+                                <button type="button" class="btn btn-danger" style="margin-left: 5px;" onclick="find()">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </form> -->
+                </div>
+                <div class="col-xs-12" id="loader" style="display: none;">
+                    <div style="display: flex; justify-content: space-around; margin-top: 100px;">
+                        <img src="/portal/img/ajax-loader.gif" alt="">
+                    </div>
+                </div>
+                <div class="col-xs-12" id="result" style="display: none;">
+                    <div class="datatable-dashv1-list custom-datatable-overright">
+                        <table class="table table-striped table-bordered table-hover" id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-pagination-switch="true">
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Name</th>
+                                    <th>Reg No</th>
+                                    <th>Class</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const loader = document.querySelector('#loader')
+        const result = document.querySelector('#result')
+
+        const create = (result) => {
+            const table = document.getElementById('tbody')
+            let counter = 1
+            for (let data of result) {
+                const trow = document.createElement('tr')
+                const tr = `
+                        <td>${counter}</td>
+                        <td>${data.surName} ${data.firstName} ${data.middleName}</td>
+                        <td>${data.regNo}</td>
+                        <td>${data.class}${data.division || ''}</td>
+                        <td><a href="" class="btn btn-danger">View Profile</a></td>
+                `
+                trow.innerHTML = tr
+                table.appendChild(trow)
+                counter++
+            }
+        }
+
+        const find = () => {
+            event.preventDefault();
+            result.style.display = 'none'
+            loader.style.display = ''
+            $('[data-toggle="table"]').bootstrapTable('destroy');
+            const parent = document.getElementById('tbody')
+            while (parent.firstChild) {
+                parent.firstChild.remove()
+            }
+            const form = document.querySelector('#form'),
+                query = form.querySelector('input[name="keyword"]').value,
+                focus = form.querySelector('select[name="focus"]').value
+
+            fetch('/admin/searchStudent', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        focus: focus,
+                        keyword: query
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw Error();
+                    }
+                    return response.json()
+                })
+                .then(data => {
+                    create(data)
+                    $('[data-toggle="table"]').bootstrapTable();
+                    loader.style.display = 'none'
+                    result.style.display = ''
+                })
+                .catch(err => {
+                    loader.style.display = 'none'
+                    alert('There was an error, try again!')
+                })
+        }
+    </script>
+    <script src="/portal/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/portal/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="/portal/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+
+    <script src="/portal/js/data-table/bootstrap-table.js"></script>
+
+    <script src="/portal/js/custom.js"></script>
+    </body>
+
+    </html>

@@ -1,0 +1,38 @@
+{
+    "name": "school",
+    "version": "1.0.0",
+    "description": "A High School website",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon app"
+    },
+    "author": "johnOdoh",
+    "license": "ISC",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.19.0",
+        "compression": "^1.7.4",
+        "connect-flash": "^0.1.1",
+        "connect-mongodb-session": "^2.3.1",
+        "cookie-parser": "^1.4.5",
+        "csurf": "^1.11.0",
+        "ejs": "^3.0.2",
+        "express": "^4.17.1",
+        "express-session": "^1.17.1",
+        "express-validator": "^6.4.1",
+        "helmet": "^3.23.3",
+        "mongodb": "^3.5.6",
+        "mongoose": "^5.9.11",
+        "mongoose-auto-increment": "^5.0.1",
+        "multer": "^1.4.2",
+        "nodemailer": "^6.4.6",
+        "puppeteer": "^5.2.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.2"
+    },
+    "engines": {
+        "node": "13.11.0"
+    }
+}

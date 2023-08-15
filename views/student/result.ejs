@@ -1,0 +1,68 @@
+<%- include('./header.ejs') %>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>My Results</h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+            <div class="row">
+                <div class="panel-body">
+                    <div class="row">
+                        <form action="/student/result" class="form-horizontal" method="POST">
+                            <div class="form-group col-xl-6 col-sm-12">
+                                <h5><b>Session</b></h5>
+                                <select name="year" class="form-control">
+                                    <option>select session</option>
+                                    <% for(let i = 0; i < 10; i++) { let y = year - i %> 
+                                        <option value="<%= y + 1 %>"><%= `${y}/${y + 1}` %></option>
+                                    <% } %> 
+                                </select>
+                            </div>
+                            <div class="form-group col-xl-6 col-sm-12">
+                                <h5><b>Class</b></h5>
+                                <select name="class" class="form-control">
+                                    <option>select class</option>
+                                    <option value="JS1">JS1</option>
+                                    <option value="JS2">JS2</option>
+                                    <option value="JS3">JS3</option>
+                                    <option value="SS1">SS1</option>
+                                    <option value="SS2">SS2</option>
+                                    <option value="SS3">SS3</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-xl-6 col-sm-12">
+                                <h5><b>Term</b></h5>
+                                <select name="term" class="form-control">
+                                    <option>select term</option>
+                                    <option value="1st">1st</option>
+                                    <option value="2nd">2nd</option>
+                                    <option value="3rd">3rd</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="/portal/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/portal/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="/portal/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="/portal/js/custom.js"></script>
+
+
+    </body>
+
+    </html>

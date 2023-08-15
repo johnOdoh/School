@@ -1,0 +1,53 @@
+<%- include('../includes/header.ejs') %>
+
+    <div id="overviews" class="section wb">
+        <div class="container">
+            <h2 class="mb-3">Complete Your Profile</h2>
+            <% if(err) { %>
+                <h4 class="text-center text-danger">
+                    <%= err %>
+                </h4>
+                <% } %>
+                    <form action="/student/completeProfile" class="form-horizontal" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="form-group col-md-6 col-12">
+                                <h4>Last Name:</h4>
+                                <input class="form-control" value="<%= data.surName %>" name="surName" readonly>
+                                <input name="role" type="hidden" value="student">
+                            </div>
+                            <div class="form-group col-md-6 col-12">
+                                <h4>First Name:</h4>
+                                <input class="form-control" value="<%= data.firstName %>" name="firstName" readonly>
+                            </div>
+                            <div class="form-group col-md-6 col-12">
+                                <h4>Middle Name:</h4>
+                                <input class="form-control" value="<%= data.middleName %>" name="middleName" readonly>
+                            </div>
+                            <div class="form-group col-md-6 col-12">
+                                <h4>Reg No:</h4>
+                                <input class="form-control" value="<%= data.regNo %>" name="regNo" readonly>
+                            </div>
+                            <div class="form-group col-md-6 col-12">
+                                <h4>Image:</h4>
+                                <input class="form-control" name="image" type="file" required>
+                                <input name="id" type="hidden" value="<%= data._id %>">
+                            </div>
+                            <div class="form-group col-md-6 col-12">
+                                <h4>New Password:</h4>
+                                <input class="form-control" name="password" type="password" required>
+                            </div>
+                            <div class="form-group col-md-6 col-12">
+                                <h4>Confirm Password:</h4>
+                                <input class="form-control" name="confirm" type="password" required>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-light btn-radius btn-brd grd1">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+
+    <%- include('../includes/footer.ejs') %>

@@ -1,0 +1,126 @@
+﻿<%- include('./header.ejs') %>
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Results</h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+            <script>
+                const untest = (btn) => {
+                    const par = btn.parentNode
+                    btn.remove()
+                    par.innerHTML = `<div>
+                                        <a href=""><i class="fa fa-check"></i></a>
+                                    </div>`
+                }
+                const tested = (btn) => {
+                    const par = btn.parentNode
+                    btn.remove()
+                    par.innerHTML = `<div>
+                                        <span><i class="fa fa-times" style="margin-right: 10px;"></i></span>
+                                    </div>`
+                }
+            </script>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading ">
+                            <ul class="nav nav-pills">
+                                <li class="active"><a href="#students" data-toggle="tab">My Students</a></li>
+                                <li class=""><a href="#upload" data-toggle="tab">Upload Result</a></li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in" id="students">
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover" style="width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Reg No</th>
+                                                    <th>Name</th>
+                                                    <th class="text-center">1st Term</th>
+                                                    <th class="text-center">2nd Term</th>
+                                                    <th class="text-center">3rd Term</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% for(let student of myStudents) { %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= student.regNo %>
+                                                        </td>
+                                                        <td>
+                                                            <%= student.surName + ' ' + student.firstName + ' ' + student.middleName %>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <img src="/results/<%= `${student.class}/${new Date().getFullYear()+1}/1st/${student.regNo}` %>.jpg" onerror="tested(this)" onload="untest(this)">
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <img src="/results/<%= `${student.class}/${new Date().getFullYear()}/2nd/${student.regNo}` %>.jpg" onerror="tested(this)" onload="untest(this)">
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <img src="/results/<%= `${student.class}/${new Date().getFullYear()}/3rd/${student.regNo}` %>.jpg" onerror="tested(this)" onload="untest(this)">
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="upload">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <form action="/teacher/uploadResult" method="POST" enctype="multipart/form-data">
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                <h4>Term:</h4>
+                                                <select name="term" class="form-control">
+                                                    <option>Select term</option>
+                                                    <option value="1st">1st</option>
+                                                    <option value="2nd">2nd</option>
+                                                    <option value="3rd">3rd</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                <h4>Result(s):</h4>
+                                                <input class="form-control" name="result" type="file" multiple required>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <button type="submit" class="btn btn-danger">Upload</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script>
+        const msg = `NB: Each result filename must correspond with the Reg No of the owner, else it will not be found by the owner.
+        Also, the result files must be in jpg, jpeg, or png format`
+        alert(msg)
+    </script>
+    <script src="/portal/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/portal/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="/portal/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="/portal/js/custom.js"></script>
+
+
+    </body>
+
+    </html>

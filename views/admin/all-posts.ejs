@@ -1,0 +1,71 @@
+﻿<%- include('./header.ejs') %>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>All Blog Posts</h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+            <div class="row">
+                <div class="col-12">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>S/N</th>
+                                        <th>Title</th>
+                                        <th>Image</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% let counter = 1; for(let post of posts) { %>
+                                        <tr>
+                                            <td>
+                                                <%= counter %>
+                                            </td>
+                                            <td>
+                                                <%= post.title %>
+                                            </td>
+                                            <td><img src="<%= post.image %>" alt="" width="50px" height="50px" class="img-fluid"></td>
+                                            <td>
+                                                <%= `${post.date.getDate()} ${post.date.toLocaleString('default', {month: 'long'})}, ${post.date.getFullYear()}` %>
+                                            </td>
+                                            <td class="d-flex">
+                                                <a href="/post/<%= post._id %>" target="_blank" title="view"><i class="fa fa-eye"></i></a>
+                                                <a href="/admin/postEdit/<%= post._id %>" target="_blank" title="edit"><i class="fa fa-edit"></i></a>
+                                                <a href="/admin/deletePost/<%= post._id %>" title="delete"><i class="fa fa-trash-o"></i></a>
+                                            </td>
+                                        </tr>
+                                        <% counter++ } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+    <!-- JQUERY SCRIPTS -->
+    <script src="/portal/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/portal/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="/portal/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="/portal/js/custom.js"></script>
+    <% if(message.length !== 0) { %>
+        <script>
+            alert('<%= message %>')
+        </script>
+        <% } %>
+            </body>
+
+            </html>

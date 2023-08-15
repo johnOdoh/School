@@ -1,0 +1,246 @@
+﻿<%- include('./header.ejs') %>
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>My Profile</h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading ">
+                            <ul class="nav nav-pills">
+                                <li class="active"><a href="#profile" data-toggle="tab">Profile</a>
+                                </li>
+                                <li class=""><a href="#edit-profile" data-toggle="tab">Edit Profile</a>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in" id="profile">
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover" style="width: 100%;">
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>
+                                                    <%= user.surName + ' ' + user.firstName + ' ' + user.middleName %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Reg No</td>
+                                                <td>
+                                                    <%= user.regNo %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Class</td>
+                                                <td>
+                                                    <%= user.class + '' + user.division %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Address</td>
+                                                <td>
+                                                    <%= user.address %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gender</td>
+                                                <td style="text-transform: capitalize;">
+                                                    <%= user.gender %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>DOB</td>
+                                                <td>
+                                                    <%= user.DOB %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>State</td>
+                                                <td>
+                                                    <%= user.state %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>LGA</td>
+                                                <td>
+                                                    <%= user.LGA %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>HomeTown</td>
+                                                <td>
+                                                    <%= user.hometown %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Blood Group</td>
+                                                <td>
+                                                    <%= user.bloodGroup %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Admision Year</td>
+                                                <td>
+                                                    <%= user.year %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sponsor Name</td>
+                                                <td>
+                                                    <%= user.sponsor_surname + ' ' + user.sponsor_firstname + ' ' + user.sponsor_middlename %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sponsor Address</td>
+                                                <td>
+                                                    <%= user.sponsor_address %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sponsor Phone No</td>
+                                                <td>
+                                                    <%= user.sponsor_phoneNo %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sponsor Email</td>
+                                                <td>
+                                                    <%= user.sponsor_email %>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="edit-profile">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-sm-12" style="margin-bottom: 20px;">
+                                            <% if(editErr.length !== 0) { %>
+                                                <h5 class="text-center" style="color: red;">
+                                                    <%= editErr %>
+                                                </h5>
+                                                <% } if(editSucc.length !== 0) { %>
+                                                    <h5 class="text-center text-success">
+                                                        <%= editSucc %>
+                                                    </h5>
+                                                    <% } %>
+                                                        <form action="/student/editProfile" class="form-horizontal" method="POST">
+                                                            <div class="form-group">
+                                                                <div class="col-sm-12">
+                                                                    <h5><b>Address:</b></h5>
+                                                                    <input class="form-control" name="address" type="text" value="<%= user.address %>" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-12">
+                                                                    <h5><b>Guardian surName:</b></h5>
+                                                                    <input class="form-control" name="sponsorSName" type="text" value="<%= user.sponsor_surname %>" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-12">
+                                                                    <h5><b>Guardian First Name:</b></h5>
+                                                                    <input class="form-control" name="sponsorFName" type="text" value="<%= user.sponsor_firstname %>" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-12">
+                                                                    <h5><b>Guardian Middle Name:</b></h5>
+                                                                    <input class="form-control" name="sponsorMName" type="text" value="<%= user.sponsor_middlename %>" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-12">
+                                                                    <h5><b>Guardian Address:</b></h5>
+                                                                    <input class="form-control" name="sponsorAddress" type="text" value="<%= user.sponsor_address %>" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-12">
+                                                                    <h5><b>Guardian Phone No:</b></h5>
+                                                                    <input class="form-control" name="sponsorPhone" type="number" value="<%= user.sponsor_phoneNo %>" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-12">
+                                                                    <h5><b>Guardian Email:</b></h5>
+                                                                    <input class="form-control" name="sponsorEmail" type="email" value="<%= user.sponsor_email %>">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-10">
+                                                                    <button type="submit" class="btn btn-success btn-radius btn-brd grd1">Edit Profile</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-12">
+                                            <% if(passErr.length !== 0) { %>
+                                                <h5 class="text-center" style="color: red;">
+                                                    <%= passErr %>
+                                                </h5>
+                                                <% } if(passSucc.length !== 0) { %>
+                                                    <h5 class="text-center text-success">
+                                                        <%= passSucc %>
+                                                    </h5>
+                                                    <% } %>
+                                                        <form action="/student/changePassword" class="form-horizontal" method="POST">
+                                                            <div class="form-group">
+                                                                <div class="col-sm-12">
+                                                                    <h5><b>Current Password:</b></h5>
+                                                                    <input class="form-control" name="current" type="password" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-12">
+                                                                    <h5><b>New Password:</b></h5>
+                                                                    <input class="form-control" name="new" type="password" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-12">
+                                                                    <h5><b>Confirm New Password:</b></h5>
+                                                                    <input class="form-control" name="confirm" type="password" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-10">
+                                                                    <button type="submit" class="btn btn-danger btn-radius btn-brd grd1">Change Password</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="/portal/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/portal/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="/portal/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="/portal/js/custom.js"></script>
+
+
+    </body>
+
+    </html>

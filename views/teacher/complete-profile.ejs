@@ -1,0 +1,85 @@
+<%- include('../includes/header.ejs') %>
+
+    <div id="overviews" class="section wb">
+        <div class="container">
+            <h2 class="mb-3">Complete Your Profile</h2>
+            <form action="/teacher/completeProfile" class="form-horizontal" method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="form-group col-md-6 col-12">
+                        <h4>First Name:</h4>
+                        <input class="form-control" value="<%= data.firstName %>" name="firstName" readonly>
+                    </div>
+                    <div class="form-group col-md-6 col-12">
+                        <h4>Last Name:</h4>
+                        <input class="form-control" value="<%= data.lastName %>" name="lastName" readonly>
+                    </div>
+                    <div class="form-group col-md-6 col-12">
+                        <h4>Email:</h4>
+                        <input class="form-control" value="<%= data.email %>" name="email" readonly>
+                    </div>
+                    <div class="form-group col-md-6 col-12">
+                        <h4>Address:</h4>
+                        <input class="form-control" name="address" type="text" value="<%= info.address %>" required>
+                        <input name="id" type="hidden" value="<%= data._id %>">
+                        <input name="role" type="hidden" value="teacher">
+                        <% if(errors.address) { %>
+                            <div class="text-danger"><i>Please enter a valid address</i></div>
+                            <% } %>
+                    </div>
+                    <div class="form-group col-md-6 col-12">
+                        <h4>Phone No:</h4>
+                        <input class="form-control" name="phone" type="number" value="<%= info.phone %>" required>
+                        <% if(errors.phone) { %>
+                            <div class="text-danger"><i>Please enter a valid phone number</i></div>
+                            <% } %>
+                    </div>
+                    <div class="form-group col-md-6 col-12">
+                        <h4>Gender:</h4>
+                        <select name="gender" id="" class="form-control" required>
+                            <option value="">Choose option</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <% if(errors.gender) { %>
+                            <div class="text-danger"><i>Please choose an option</i></div>
+                            <% } %>
+                    </div>
+                    <div class="form-group col-md-6 col-12">
+                        <h4>DOB:</h4>
+                        <input class="form-control" name="dob" type="date" placeholder="dd/mm/yyyy" value="<%= info.dob %>" required>
+                        <% if(errors.dob) { %>
+                            <div class="text-danger"><i>Please enter a valid dob</i></div>
+                            <% } %>
+                    </div>
+                    <div class="form-group col-md-6 col-12">
+                        <h4>Image:</h4>
+                        <input class="form-control" name="image" type="file" required>
+                        <% if(errors.image) { %>
+                            <div class="text-danger"><i>Image must be a jpg, jpeg or png file</i></div>
+                            <% } %>
+                    </div>
+                    <div class="form-group col-md-6 col-12">
+                        <h4>New Password:</h4>
+                        <input class="form-control" name="password" type="password" required>
+                        <% if(errors.password) { %>
+                            <div class="text-danger"><i>Password must be atleast 8 characters</i></div>
+                            <% } %>
+                    </div>
+                    <div class="form-group col-md-6 col-12">
+                        <h4>Confirm Password:</h4>
+                        <input class="form-control" name="confirm" type="password" required>
+                        <% if(errors.confirm) { %>
+                            <div class="text-danger"><i>Passwords dont match</i></div>
+                            <% } %>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-light btn-radius btn-brd grd1">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+
+    <%- include('../includes/footer.ejs') %>

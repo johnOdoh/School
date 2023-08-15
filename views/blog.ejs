@@ -1,0 +1,59 @@
+<%- include('./includes/header.ejs') %>
+
+    <div id="overviews" class="section wb">
+        <div class="container">
+            <h1 class="mb-2">School Blog</h1>
+            <h3>Discover contents on many topics created exclusively by our teachers and students</h3>
+            <hr class="invis">
+            <div class="row">
+                <div class="col-lg-9 col-12">
+                    <div class="row">
+                        <div class="col-12 mb-1">
+                            <div class="blog-item pt-2 pb-2" style="background-color: #eea412; display: flex; justify-content: space-between;">
+                                <div>
+                                    <%= `Page ${currentPage} of ${numOfPages}` %>
+                                </div>
+                                <div>
+                                    <%= num %> post(s) found</div>
+                            </div>
+                        </div>
+                        <% for(let post of posts) { %>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="blog-item">
+                                    <div class="image-blog">
+                                        <img src="<%= post.image %>" alt="" class="img-fluid">
+                                    </div>
+                                    <div class="meta-info-blog">
+                                        <span><i class="fa fa-calendar"></i> <%= `${post.date.getDate()} ${post.date.toLocaleString('default', {month: 'short'})}, ${post.date.getFullYear()}` %></span>
+                                        <span><i class="fa fa-tag"></i> <%= post.category %></span>
+                                        <span><i class="fa fa-comments"></i> <%= post.comments.length %> Comment(s)</span>
+                                    </div>
+                                    <div class="blog-title">
+                                        <h2>
+                                            <%= post.title %>
+                                        </h2>
+                                    </div>
+                                    <div class="blog-desc">
+                                        <p>
+                                            <%- post.content %>
+                                        </p>
+                                    </div>
+                                    <div class="blog-button">
+                                        <a class="hover-btn-new orange" href="/post/<%= post._id %>"><span>Read More<span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <% } %>
+                    </div>
+                    <%- include('./includes/page.ejs') %>
+                </div>
+                <div class="col-lg-3 col-12 right-single">
+                    <%- include('./includes/blog-sidebar.ejs') %>
+                </div>
+            </div>
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+    <%- include('./includes/footer.ejs') %>

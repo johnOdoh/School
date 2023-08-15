@@ -1,0 +1,87 @@
+﻿<%- include('./header.ejs') %>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Create Admin</h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+            <div class="row">
+                <form action="/admin/createAdmin" method="POST" enctype="multipart/form-data">
+                    <% if(errMessage.length !== 0) { %>
+                        <h5 class="text-center text-danger">
+                            <%= errMessage %>
+                        </h5>
+                        <% } if(successMessage.length !== 0) { %>
+                            <h5 class="text-center text-success">
+                                <%= successMessage %>
+                            </h5>
+                            <% } %>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-12" style="padding-right: 20px;">
+                                            <div class="form-group">
+                                                <h5><b>First Name</b></h5>
+                                                <input type="text" class="form-control" name="firstName" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <h5><b>Last Name</b></h5>
+                                                <input type="text" class="form-control" name="lastName" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <h5><b>Phone No</b></h5>
+                                                <input type="number" class="form-control" name="phone" required>
+                                                <input type="hidden" name="role" value="admin">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xs-12" style="padding-right: 20px;">
+                                            <div class="form-group">
+                                                <h5><b>Image</b></h5>
+                                                <input type="file" class="form-control" name="image" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <h5><b>Email</b></h5>
+                                                <input type="email" class="form-control" name="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <h5><b>Password</b></h5>
+                                                <input type="password" class="form-control" name="password" required>
+                                            </div>
+                                            <!-- <div class="form-group input-group">
+                                    <span class="input-group-addon">Confirm Password</span>
+                                    <input type="password" class="form-control" required>
+                                </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-warning btn-radius btn-brd grd1">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="/portal/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/portal/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="/portal/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="/portal/js/custom.js"></script>
+
+
+    </body>
+
+    </html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Portal</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="/portal/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="/portal/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Binary admin</a>
+            </div>
+            <div style="padding: 15px 50px 5px 50px; float: left; font-size: 16px;" class="nav-links">
+                <a href="/">Home</a>
+                <a href="">Contact</a>
+                <a href="">Subject</a>
+            </div>
+            <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
+                <form action="/auth/logout" method="POST">
+                    13th November, 2020 &nbsp; <button class="btn btn-warning square-btn-adjust">Logout</button>
+                </form>
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="text-center">
+                        <img src="<%= user.image %>" class="user-image img-responsive" style="width: 128px; height: 128px; border-radius: 50%;">
+                        <h3 style="color: white; margin-bottom: 30px;">
+                            <%= user.surName + ' ' + user.firstName + ' ' + user.middleName %>
+                        </h3>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'dashboard' ? 'active-menu' : '' %>" href="/student/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'profile' ? 'active-menu' : '' %>" href="/student/profile"><i class="fa fa-user"></i> Profile</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'tt' ? 'active-menu' : '' %>" href="/student/timetable"><i class="fa fa-table"></i> Timetable</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'r' ? 'active-menu' : '' %>" href="/student/results"><i class="fa fa-sticky-note"></i> My Results</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'mt' ? 'active-menu' : '' %>" href="/student/myStudents"><i class="fa fa-bar-chart-o"></i> My Students</a>
+                    </li>
+                    <li>
+                        <a class="<%= path === 'ca' ? 'active-menu' : '' %>" href="/student/createAdmin"><i class="fa fa-edit"></i> Create Admin</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-sitemap"></i> All Students<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="">JS1</a></li>
+                            <li><a href="">JS2</a></li>
+                            <li><a href="">JS3</a></li>
+                            <li><a href="">SS1</a></li>
+                            <li><a href="">SS2</a></li>
+                            <li><a href="">SS3</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="blank.html"><i class="fa fa-square-o"></i> Blank Page</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>

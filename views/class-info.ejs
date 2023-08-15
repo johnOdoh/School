@@ -1,0 +1,87 @@
+<%- include('./includes/header.ejs') %>
+
+    <div id="overviews" class="section wb">
+        <div class="container">
+            <h1 class="text-center mb-4">
+                <%= theClass.name %> Info</h1>
+            <div class="customer-box mb-2">
+                <ul class="nav nav-tabs p-0" style="background: none;">
+                    <li>
+                        <a class="active" href="#pictures" data-toggle="tab">
+                        Pictures
+                    </a>
+                    </li>
+                    <li>
+                        <a class="" href="#subjects" data-toggle="tab">
+                        Subjects Info
+                    </a>
+                    </li>
+                    <li>
+                        <a class="" href="#admin" data-toggle="tab">
+                        Administrators
+                    </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content ml-3">
+                <div class="row tab-pane active" id="pictures">
+                    <div class="row text-center">
+                        <div class="col-lg-4 col-sm-6 col-12 p-3">
+                            <div class="image-blog">
+                                <img src="images/blog_1.jpg" alt="" class="img-responsive">
+                            </div>
+                            <small><i>JS1A classroom </i></small>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12 p-3">
+                            <div class="image-blog">
+                                <img src="images/blog_2.jpg" alt="" class="img-responsive">
+                            </div>
+                            <small><i>Mr. Emmanuel Okonkwo - Form teacher JS1A(090586324789) </i></small>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12 p-3">
+                            <div class="image-blog">
+                                <img src="images/blog_3.jpg" alt="" class="img-responsive">
+                            </div>
+                            <small><i>Mr. Emmanuel Okonkwo - Form teacher JS1B(090586324789) </i></small>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                </div>
+                <div class="row tab-pane" id="subjects">
+                    <div class="row">
+                        <% for(let subject of subjects) { %>
+                            <div class="col-lg-4 col-sm-6 col-12">
+                                <a href="/subjectInfo/<%= subject.name + '/' + theClass.name %>" title="click to view subject info">
+                                    <div class="cont">
+                                        <%= subject.name %>
+                                    </div>
+                                </a>
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
+                <div class="row tab-pane" id="admin">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6 col-12 p-3">
+                            <div class="image-blog">
+                                <img src="<%= theClass.sessionHead.image %>" alt="" class="img-responsive" width="353px" height="316px">
+                            </div>
+                            <small><i><%= `${theClass.sessionHead.firstName} ${theClass.sessionHead.lastName} - ${theClass.sessionHead.rank}(${theClass.sessionHead.phoneNo})` %></i></small>
+                        </div>
+                        <% for(let divInfo of theClass.divisions) { if(divInfo.teacher !== undefined) { %>
+                            <div class="col-lg-4 col-sm-6 col-12 p-3">
+                                <div class="image-blog">
+                                    <img src="<%= divInfo.teacher.image %>" alt="" class="img-responsive" width="353px" height="316px">
+                                </div>
+                                <small><i><%= `${divInfo.teacher.firstName} ${divInfo.teacher.lastName} - ${divInfo.teacher.rank} ${divInfo.teacher.class}${divInfo.teacher.division} (${divInfo.teacher.phoneNo})` %></i></small>
+                            </div>
+                            <% }} %>
+                                <!-- end col -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+
+    <%- include('./includes/footer.ejs') %>

@@ -1,0 +1,70 @@
+<%- include('./header.ejs') %>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Register your Subjects</h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+            <div class="row">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <form action="/student/registerSubjects" method="POST">
+                            <table class="table table-striped table-bordered table-hover" style="width: 100%;">
+                                <thead class="text-left">
+                                    <tr>
+                                        <th>Select</th>
+                                        <th>Subject</th>
+                                        <th>Class</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% const subj = ['English Language', 'Mathematics'],
+                                            classes = ['JS1', 'JS2', 'JS3']
+                                        for (let subject of subjects) { %>
+                                        <tr>
+                                            <td><input type="checkbox" name="subjectIds[]" value="<%= subject._id %>" <%=classes.includes(user.class) || subj.includes(subject.name) ? 'checked required' : '' %>></td>
+                                            <td>
+                                                <%= subject.name %>
+                                            </td>
+                                            <td>
+                                                <%= user.class %>
+                                            </td>
+                                            <td><i>Compulsory</i></td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                            <button type="submit" class="btn btn-danger">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JQUERY SCRIPTS -->
+    <script src="/portal/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/portal/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="/portal/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="/portal/js/custom.js"></script>
+    <script>
+        alert(`Ensure you register only and all the subjects for your class as you will not be able to change it later.
+        If you are not sure please ask your class teacher before you proceed`)
+    </script>
+
+
+    </body>
+
+    </html>

@@ -1,0 +1,136 @@
+﻿<%- include('./header.ejs') %>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>My Students</h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading ">
+                            <ul class="nav nav-pills">
+                                <% for (let i = 0; i < classInfo.divisions.length; i++) { %>
+                                    <li class="<%= i == 0 ? 'active' : '' %>">
+                                        <a href="#<%= classInfo.divisions[i].name %>" data-toggle="tab">
+                                            <%= classInfo.name + classInfo.divisions[i].name %>
+                                        </a>
+                                    </li>
+                                    <% } %>
+                                        <li class=""><a href="#unassigned" data-toggle="tab">Unassigned</a></li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <% for (let i = 0; i < classInfo.divisions.length; i++) { %>
+                                <div class="tab-pane fade <%= i == 0 ? 'active in' : '' %>" id="<%= classInfo.divisions[i].name %>">
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered table-hover" style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S/N</th>
+                                                        <th>Reg No</th>
+                                                        <th>Name</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% let counter = 1; for (let student of myStudents) { if (student.division == classInfo.divisions[i].name) { %>
+                                                        <tr>
+                                                            <td>
+                                                                <%= counter %>
+                                                            </td>
+                                                            <td>
+                                                                <%= student.regNo %>
+                                                            </td>
+                                                            <td>
+                                                                <%= student.surName+' '+student.firstName+' '+student.middleName %>
+                                                            </td>
+                                                            <td>
+                                                                <a href="/teacher/studentProfile/<%= student._id %>" class="btn btn-info"><i class="fa fa-eye" title="view profile"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        <% counter++ } } %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                                    <div class="tab-pane fade" id="unassigned">
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <form action="/teacher/assignDiv" method="POST">
+                                                    <table class="table table-striped table-bordered table-hover" style="width: 100%;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>Reg No</th>
+                                                                <th>Name</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% for (let student of myStudents) { if (!student.division) { %>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input value="<%= student._id %>" type="checkbox" name="studentIds[]" title="mark to select student">
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= student.regNo %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= student.surName+' '+student.firstName+' '+student.middleName %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="/teacher/studentProfile/<%= student._id %>" class="btn btn-info"><i class="fa fa-eye" title="view profile"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <% } } %>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="row">
+                                                        <div class="form-group col-lg-6">
+                                                            <h4>Division:</h4>
+                                                            <select class="form-control" name="division" required>
+                                                                <option value="">Choose division</option>
+                                                                <% for(let division of classInfo.divisions) { %> 
+                                                                <option value="<%= division.name %>"><%= division.name %></option>
+                                                                <% } %> 
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-info btn-radius btn-brd grd1">Assign Division</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="/portal/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/portal/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="/portal/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="/portal/js/custom.js"></script>
+
+
+    </body>
+
+    </html>

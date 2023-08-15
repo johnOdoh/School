@@ -1,0 +1,18 @@
+{"_id":{"$oid":"5f44d2eb805bf713ac030073"},"name":"Mathematics","class":[{"name":"JS1","teachers":[],"scheme":[],"assessments":[]},{"name":"JS2","teachers":[],"scheme":[],"assessments":[]},{"name":"JS3","teachers":[],"scheme":[],"assessments":[]},{"name":"SS1","teachers":[],"scheme":[],"assessments":[]},{"name":"SS2","teachers":[],"scheme":[],"assessments":[]},{"name":"SS3","teachers":[],"scheme":[],"assessments":[]}]}
+{"_id":{"$oid":"5f44d51f085ac713ace55568"},"name":"Mathematics","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace55569"},"name":"English Language","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace5556a"},"name":"Igbo Language","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace5556b"},"name":"Agricultural Science","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace5556c"},"name":"Computer","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace5556d"},"name":"Civic Education","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace5556e"},"name":"French","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace5556f"},"name":"Religious Studies","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace55570"},"name":"Basic Science","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace55571"},"name":"Introductory Technology","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace55572"},"name":"Physical Education","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace55573"},"name":"Social Studies","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace55574"},"name":"Business Studies","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace55575"},"name":"Home Economics","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace55576"},"name":"Cultural & Creative Arts","class":"\"[{\"name\":\"JS1\""}
+{"_id":{"$oid":"5f44d51f085ac713ace55577"},"name":"","class":null}
+{"_id":{"$oid":"5f44d51f085ac713ace55578"},"name":"","class":null}

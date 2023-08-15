@@ -1,0 +1,199 @@
+<%- include('./includes/header.ejs') %>
+
+    <div id="overviews" class="section wb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 blog-post-single">
+                    <div class="blog-item">
+                        <div class="image-blog">
+                            <img src="<%= post.image %>" alt="" class="img-fluid">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-date">
+                                <span class="day"><%= post.date.getDate() %></span>
+                                <span class="month"><%= post.date.toLocaleString('default', {month: 'short'}) %></span>
+                            </div>
+                            <div class="meta-info-blog">
+                                <span><i class="fa fa-calendar"></i> <%= `${post.date.getDate()} ${post.date.toLocaleString('default', {month: 'long'})}, ${post.date.getFullYear()}` %> </span>
+                                <span><i class="fa fa-tag"></i> <%= post.category %></span>
+                                <span><i class="fa fa-comments"></i> <a href="#comments"><%= post.comments.length %> Comment(s)</a></span>
+                            </div>
+                            <div class="blog-title">
+                                <h2>
+                                    <%= post.title %>
+                                </h2>
+                            </div>
+                            <div class="blog-desc">
+                                <%- post.content %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-author">
+                        <% if(author) { %>
+                            <div class="author-bio">
+                                <% if(post.authorRole === 'student') { %>
+                                    <h3 class="author_name">
+                                        <a href="/blog?aut=<%= author.regNo %>">
+                                            <%= `${author.surName} ${author.firstName} ${author.middleName}` %>
+                                        </a>
+                                    </h3>
+                                    <h5>
+                                        <%= `${author.class}${author.division} Student` %>
+                                    </h5>
+                                    <% } else if(post.authorRole === 'teacher') { %>
+                                        <h3 class="author_name">
+                                            <a href="/blog?aut=<%= author.email %>">
+                                                <%= `${author.surName} ${author.firstName} ${author.middleName}` %>
+                                            </a>
+                                        </h3>
+                                        <h5>
+                                            <%= `${subject[0]} Teacher` %>
+                                        </h5>
+                                        <% } %>
+                            </div>
+                            <div class="author-desc">
+                                <img src="<%= author.image %>" alt="about author">
+                            </div>
+                            <% } else { %>
+                                <div class="author-bio">
+                                    <i class="author_det">Author Unavailable</i>
+                                </div>
+                                <div class="author-desc"></div>
+                                <% } %>
+                    </div>
+                    <div class="blog-comments">
+                        <h4 id="comments">Comments
+                            <%= `(${post.comments.length})` %>
+                        </h4>
+                        <div id="comment-blog">
+                            <ul class="comment-list">
+                                <% let counter = 0; for(let comment of comments) { %>
+                                    <li class="comment">
+                                        <div class="avatar"><img alt="" src="/images/avatar-01.jpg" class="avatar"></div>
+                                        <div class="comment-container">
+                                            <h5 class="comment-author">
+                                                <a href="#">
+                                                    <%= comment._doc.name %>
+                                                </a>
+                                            </h5>
+                                            <div class="comment-meta">
+                                                <a href="#" class="comment-date link-style1">
+                                                    <%= comment._doc.time %>
+                                                </a>
+                                                <% if(cred.email === comment._doc.email) { %>
+                                                    <a class="comment-reply-link link-style3" href="/commentDel/<%= post._doc._id + '/' + counter %>">Delete <i class="fa fa-trash"></i></a>
+                                                    <% } else { %>
+                                                        <a class="comment-reply-link link-style3" href="#reply">Reply »</a>
+                                                        <% } %>
+                                            </div>
+                                            <div class="comment-body">
+                                                <p>
+                                                    <%= comment._doc.comment %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <% counter++ } %>
+                                        <li class="comment">
+                                            <div class="avatar"><img alt="" src="images/avatar-02.jpg" class="avatar"></div>
+                                            <div class="comment-container">
+                                                <h5 class="comment-author"><a href="#">John Smith</a></h5>
+                                                <div class="comment-meta">
+                                                    <a href="#" class="comment-date link-style1">February 22, 2015</a>
+                                                    <a class="comment-reply-link link-style3" href="#respond">Reply »</a>
+                                                </div>
+                                                <div class="comment-body">
+                                                    <p>Ne omnis saperet docendi nec, eos ea alii molestiae aliquand. Latine fuisset mele, mandamus atrioque eu mea, wi forensib argumentum vim an. Te viderer conceptam sed, mea et delenit fabellas probat.</p>
+                                                </div>
+                                            </div>
+                                            <ul class="children">
+                                                <li class="comment">
+                                                    <div class="avatar"><img alt="" src="images/avatar-03.jpg" class="avatar"></div>
+                                                    <div class="comment-container">
+                                                        <h5 class="comment-author"><a href="#">Thomas Smith</a></h5>
+                                                        <div class="comment-meta"><a href="#" class="comment-date link-style1">February 14, 2015</a><a class="comment-reply-link link-style3" href="#respond">Reply »</a></div>
+                                                        <div class="comment-body">
+                                                            <p>Labores pertinax theophrastus vim an. Error ditas in sea, per no omnis iisque nonumes. Est an dicam option, ad quis iriure saperet nec, ignota causae inciderint ex vix. Iisque qualisque imp duo
+                                                                eu, pro reque consequ untur. No vero laudem legere pri, error denique vis ne, duo iusto bonorum.</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="comments-form">
+                        <h4 id="reply">Leave a comment</h4>
+                        <div class="comment-form-main">
+                            <form action="/comment" method="POST">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input class="form-control" name="name" placeholder="Name" value="<%= cred.name %>" type="text" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input class="form-control" name="email" placeholder="Email" value="<%= cred.email %>" type="email" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input class="form-control" name="url" placeholder="Website URL (http://...)" value="<%= cred.url %>" type="url">
+                                            <input type="hidden" name="id" value="<%= post._id %>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="comment" placeholder="Message" cols="30" rows="2" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="checkbox" id="remember" name="rem">
+                                            <label for="remember"><small>Remember my details for next time</small></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 post-btn">
+                                        <button class="hover-btn-new orange"><span>Post Comment</span></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+                <div class="col-lg-3 col-12 right-single">
+                    <%- include('./includes/blog-sidebar.ejs') %>
+                        <div class="widget-categories">
+                            <h3 class="widget-title">You may also like</h3>
+                            <ul>
+                                <% for (let relate of related) { if ((post._doc._id).toString() != relate._doc._id.toString()) { %>
+                                    <li class="media mb-3">
+                                        <a class="media-left" href="/post/<%= relate._id %>">
+                                            <img src="<%= relate.image %>" alt="" class="img-responsive" width="50px" height="50px">
+                                        </a>
+                                        <div class="media-body ml-2">
+                                            <a class="media-left" href="/post/<%= relate._id %>">
+                                                <h4 class="relate-title">
+                                                    <%= relate.title %>
+                                                </h4>
+                                            </a>
+                                            <div class="meta-info-relate" style="font-size: smaller;">
+                                                <span><i class="fa fa-calendar"> </i> <%= `${relate.date.getDate()} ${relate.date.toLocaleString('default', {month: 'short'})}, ${relate.date.getFullYear()}` %> </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <% } } %>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+    <%- include('./includes/footer.ejs') %>

@@ -1,0 +1,70 @@
+﻿<%- include('./header.ejs') %>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Create Teacher</h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+            <div class="row">
+                <form action="/admin/createTeacher" method="POST">
+                    <% if(errMessage.length !== 0) { %>
+                        <h5 class="text-center text-danger">
+                            <%= errMessage %>
+                        </h5>
+                        <% } if(successMessage.length !== 0) { %>
+                            <h5 class="text-center text-success">
+                                <%= successMessage %>
+                            </h5>
+                            <% } %>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-12" style="padding-right: 20px;">
+                                            <div class="form-group">
+                                                <h5><b>First Name</b></h5>
+                                                <input type="text" class="form-control" name="firstName" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xs-12" style="padding-right: 20px;">
+                                            <div class="form-group">
+                                                <h5><b>Last Name</b></h5>
+                                                <input type="text" class="form-control" name="lastName" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xs-12" style="padding-right: 20px;">
+                                            <div class="form-group">
+                                                <h5><b>Email</b></h5>
+                                                <input type="email" class="form-control" name="email" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <button type="submit" class="btn btn-warning btn-radius btn-brd grd1">Create</button>
+                                        </div>
+                                    </div>
+                                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="/portal/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/portal/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="/portal/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="/portal/js/custom.js"></script>
+
+
+    </body>
+
+    </html>

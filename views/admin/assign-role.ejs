@@ -1,0 +1,109 @@
+﻿<%- include('./header.ejs') %>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Assign Teacher Role</h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+            <div class="row">
+                <form action="/admin/assignRole" method="POST">
+                    <% if(errMessage.length !== 0) { %>
+                        <h5 class="text-center text-danger">
+                            <%= errMessage %>
+                        </h5>
+                        <% } if(successMessage.length !== 0) { %>
+                            <h5 class="text-center text-success">
+                                <%= successMessage %>
+                            </h5>
+                            <% } %>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-12" style="padding-right: 20px;">
+                                            <div class="form-group">
+                                                <h5><b>Email</b></h5>
+                                                <input type="email" class="form-control" name="email" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xs-12" style="padding-right: 20px;">
+                                            <div class="form-group">
+                                                <h5><b>Role</b></h5>
+                                                <select name="role" id="" class="form-control" onchange="execute(this)">
+                                                    <option value="">Choose option</option>
+                                                    <option value="teacher">Teacher</option>
+                                                    <option value="form-teacher">Form Teacher</option>
+                                                    <option value="session-head">Session Head</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xs-12" style="padding-right: 20px;" id="class">
+                                            <div class="form-group">
+                                                <h5><b>Class</b></h5>
+                                                <select name="class" class="form-control">
+                                                    <option value="">Choose option</option>
+                                                    <option value="JS1">JS1</option>
+                                                    <option value="JS2">JS2</option>
+                                                    <option value="JS3">JS3</option>
+                                                    <option value="SS1">SS1</option>
+                                                    <option value="SS2">SS2</option>
+                                                    <option value="SS3">SS3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xs-12" style="padding-right: 20px;" id="div">
+                                            <div class="form-group">
+                                                <h5><b>Division</b></h5>
+                                                <select name="division" class="form-control">
+                                                    <option value="">Choose option</option>
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                    <option value="C">C</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <button type="submit" class="btn btn-warning btn-radius btn-brd grd1">Assign</button>
+                                        </div>
+                                    </div>
+                                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /. WRAPPER  -->
+    <script>
+        const level = document.querySelector('#class')
+        const div = document.querySelector('#div')
+        const hide = () => {
+            level.style.display = 'none'
+            div.style.display = 'none'
+        }
+        const execute = (element) => {
+            if (element.value === 'teacher') {
+                hide()
+            } else if (element.value === 'session-head') {
+                hide()
+                level.style.display = ''
+            } else if (element.value === 'form-teacher') {
+                hide()
+                level.style.display = ''
+                div.style.display = ''
+            }
+        }
+        hide()
+    </script>
+    <!-- JQUERY SCRIPTS -->
+    <script src="/portal/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/portal/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="/portal/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="/portal/js/custom.js"></script>
+
+    </body>
+
+    </html>

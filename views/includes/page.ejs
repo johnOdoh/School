@@ -1,0 +1,91 @@
+<!-- <nav aria-label="Page navigation">
+    <ul class="pagination pagination-sm justify-content-end">
+        <% if(currentPage !== 1) { %>
+            <li class="page-item">
+                <a class="page-link" href="?<%= query %>&page=<%= currentPage - 1 %>" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <% } for(let i = 1; i <= numOfPages; i++) { %>
+                <li class="page-item <%= currentPage == i ? 'active' : '' %>">
+                    <a class="page-link" href="?<%= query %>&page=<%= i %>">
+                        <%= i %>
+                    </a>
+                </li>
+                <% } if(numOfPages !== currentPage) { %>
+                    <li class="page-item">
+                        <a class="page-link" href="?<%= query %>&page=<%= currentPage + 1 %>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <% } %>
+    </ul>
+</nav> -->
+<div class="col-md-12 mt-3">
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <%if (currentPage > 1) { %>
+                <li class="page-item">
+                    <a class="page-link" href="?<%= query %>&page=<%= currentPage - 1 %>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <% } if(numOfPages <= 5 ) { for (let i = 1; i<= numOfPages; i++) { %>
+                    <li class="page-item">
+                        <a class="page-link <%= currentPage == i ? 'active' : '' %>" href="?<%= query %>&page=<%= i %>">
+                            <%= i %>
+                        </a>
+                    </li>
+                    <% }} else if(currentPage <= 3) { %>
+                        <li class="page-item"><a class="page-link <%= currentPage == 1 ? 'active' : '' %>" href="?<%= query %>&page=1">1</a></li>
+                        <li class="page-item"><a class="page-link <%= currentPage == 2 ? 'active' : '' %>" href="?<%= query %>&page=2">2</a></li>
+                        <li class="page-item"><a class="page-link <%= currentPage == 3 ? 'active' : '' %>" href="?<%= query %>&page=3">3</a></li>
+                        <li class="page-item"><small class="elipse page-link" style="background: none">---</small></li>
+                        <li class="page-item">
+                            <a class="page-link <%= currentPage == numOfPages ? 'active' : '' %>" href="?<%= query %>&page=<%= numOfPages %>">
+                                <%= numOfPages %>
+                            </a>
+                        </li>
+                        <% } else if(currentPage >= (numOfPages - 2)) { %>
+                            <li class="page-item"><a class="page-link <%= currentPage == 1 ? 'active' : '' %>" href="?<%= query %>&page=1">1</a></li>
+                            <li class="page-item"><small class="elipse page-link" style="background: none">---</small></li>
+                            <li class="page-item">
+                                <a class="page-link <%= currentPage == numOfPages - 2 ? 'active' : '' %>" href="?<%= query %>&page=<%= numOfPages - 2 %>">
+                                    <%= numOfPages - 2 %>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link <%= currentPage == numOfPages - 1 ? 'active' : '' %>" href="?<%= query %>&page=<%= numOfPages - 1 %>">
+                                    <%= numOfPages - 1 %>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link <%= currentPage == numOfPages ? 'active' : '' %>" href="?<%= query %>&page=<%= numOfPages %>">
+                                    <%= numOfPages %>
+                                </a>
+                            </li>
+                            <% } else { %>
+                                <li class="page-item"><a class="page-link" href="?<%= query %>&page=1">1</a></li>
+                                <li class="page-item"><small class="elipse page-link" style="background: none">---</small></li>
+                                <li class="page-item">
+                                    <a class="page-link active" href="?<%= query %>&page=<%= currentPage %>">
+                                        <%= currentPage %>
+                                    </a>
+                                </li>
+                                <li class="page-item"><small class="elipse page-link" style="background: none">---</small></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?<%= query %>&page=<%= numOfPages %>">
+                                        <%= numOfPages %>
+                                    </a>
+                                </li>
+                                <% } if(currentPage != numOfPages) { %>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?<%= query %>&page=<%= currentPage + 1 %>" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                    <% } %>
+        </ul>
+    </nav>
+</div>
+<!-- end col -->
